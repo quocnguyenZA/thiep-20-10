@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Dancing+Script:wght@600&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%;overflow:hidden}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
 
   body{
     font-family:"Be Vietnam Pro",system-ui,sans-serif;
@@ -192,6 +192,93 @@
   .music.on{animation:beat 1.4s ease-in-out infinite}
   @keyframes beat{0%,100%{box-shadow:0 6px 18px rgba(0,0,0,.3)}50%{box-shadow:0 6px 18px rgba(0,0,0,.3),0 0 0 10px rgba(255,255,255,.18)}}
 
+  /* ---------- landing: lá thư mở ra ---------- */
+  .phone{touch-action:none}
+
+  .landing{
+    position:absolute;inset:0;z-index:25;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:9%;
+    background:
+      radial-gradient(70% 45% at 50% 28%,rgba(255,228,218,.9),transparent 72%),
+      linear-gradient(180deg,#faf2ef 0%,#f3e3e3 55%,#eedcde 100%);
+    cursor:pointer;text-align:center;
+    transition:opacity .9s ease;
+  }
+  .landing.hide{opacity:0;pointer-events:none}
+  .landing.gone{display:none}
+
+  .env{
+    position:relative;width:66%;max-width:252px;aspect-ratio:1.62/1;
+    perspective:900px;
+    filter:drop-shadow(0 18px 26px rgba(140,90,85,.3));
+    transition:transform .8s ease 1.6s;
+  }
+  .landing.open .env{transform:translateY(-4%) scale(1.03)}
+  .env-back{position:absolute;inset:0;background:linear-gradient(180deg,#eed8d2,#e4c9c2);border-radius:8px}
+  .env-letter{
+    position:absolute;left:7%;right:7%;top:6%;bottom:10%;
+    background:linear-gradient(180deg,#fffdfc,#fdf5f2);
+    border:1px solid #efd9d2;border-radius:5px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    z-index:2;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:9px;padding:8% 8% 8%;padding-top:30%;
+    transition:transform 1s cubic-bezier(.5,0,.2,1) .45s;
+  }
+  .env-letter .lt1{font:600 clamp(13px,4vw,16px)/1 "Dancing Script",cursive;color:#b3655c}
+  .env-letter .lt2{font:700 clamp(19px,5.8vw,25px)/1.2 "Playfair Display",serif;color:#7d4a42;letter-spacing:.14em}
+  .env-letter .lt3{font:600 clamp(9px,2.6vw,11px)/1 "Be Vietnam Pro",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a97e74}
+
+  .env-flap{
+    position:absolute;top:0;left:0;right:0;height:56%;
+    background:linear-gradient(180deg,#e9cfc8,#dfc1b9);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top center;
+    transition:transform .75s cubic-bezier(.55,.05,.3,1.02), z-index 0s .38s;
+    z-index:5;
+  }
+  .env-front{
+    position:absolute;left:0;right:0;bottom:0;height:64%;
+    background:linear-gradient(180deg,#f6e6e1,#ecd6cf);
+    clip-path:polygon(0 0,50% 46%,100% 0,100% 100%,0 100%);
+    border-radius:0 0 8px 8px;
+    z-index:4;
+  }
+  .wax{
+    position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);
+    width:27%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#e08b80,#b85a50 68%,#9c473f);
+    box-shadow:0 3px 7px rgba(120,50,45,.5), inset 0 0 0 2px rgba(255,255,255,.16);
+    z-index:6;
+    display:grid;place-items:center;
+    font:700 clamp(9px,2.7vw,12px)/1 "Playfair Display",serif;color:#fbe9e5;
+    letter-spacing:.05em;
+    transition:opacity .3s ease, transform .35s ease;
+  }
+  .landing.open .env-flap{transform:rotateX(178deg);z-index:1}
+  .landing.open .wax{opacity:0;transform:translate(-50%,-50%) scale(.55)}
+  .landing.open .env-letter{transform:translateY(-84%)}
+
+  .open-hint{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    width:100%;padding:0 8%;box-sizing:border-box;text-align:center;
+    color:#8a6a62;
+    animation:hintPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes hintPulse{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(5px);opacity:1}}
+  .open-hint span{
+    font-size:26px;width:54px;height:54px;border-radius:50%;flex:none;
+    display:grid;place-items:center;
+    background:rgba(255,255,255,.75);
+    box-shadow:0 6px 16px rgba(150,100,95,.25);
+  }
+  .open-hint p{
+    font:600 clamp(12px,3.4vw,14px)/1.6 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;max-width:100%;
+  }
+  .landing.open .open-hint{opacity:0;animation:none;transition:opacity .4s}
+
   /* ---------- điện thoại: chiếm full màn hình ---------- */
   @media (max-width:520px){
     html,body{height:100%;height:100dvh}
@@ -348,7 +435,25 @@
 
     </div>
 
-    <div class="hint">cuộn để xem ♡</div>
+    <div class="hint">vuốt để đọc ♡</div>
+
+    <div class="landing" id="landing">
+      <div class="env">
+        <div class="env-back"></div>
+        <div class="env-letter">
+          <div class="lt1">Một lá thư cho em</div>
+          <div class="lt2">20 · 10</div>
+          <div class="lt3">♥ with love</div>
+        </div>
+        <div class="env-flap"></div>
+        <div class="wax">20.10</div>
+        <div class="env-front"></div>
+      </div>
+      <div class="open-hint">
+        <span>✉</span>
+        <p>Chạm để mở lá thư</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -380,44 +485,70 @@
   updateCD();
   setInterval(updateCD, 30000);
 
-  /* ---------- auto vertical scroll ---------- */
+  /* ---------- landing: mở lá thư ---------- */
+  const landing = document.getElementById("landing");
+  let opened = false, opening = false;
+  landing.addEventListener("click", () => {
+    if (opening) return;
+    opening = true;
+    landing.classList.add("open");
+    setTimeout(() => {
+      landing.classList.add("hide");
+      opened = true;              // bắt đầu nhận vuốt sau khi thư mở xong
+    }, 2100);
+    setTimeout(() => landing.classList.add("gone"), 3100);
+  });
+
+  /* ---------- cuộn thủ công: vuốt bằng tay ---------- */
   const screenEl = document.getElementById("screen");
   const invite = document.getElementById("invite");
-  const SPEED = 26;                 // px per second
-  const HOLD = 2.4;                 // pause at loop end
-  let offset = 0, wait = 0, last = null, manual = 0;
+  let offset = 0, last = null, vel = 0;
+  let dragging = false, lastY = 0;
 
-  function total(){ return Math.max(0, invite.offsetHeight - screenEl.offsetHeight); }
+  const total = () => Math.max(0, invite.offsetHeight - screenEl.offsetHeight);
+  const clamp = v => Math.min(Math.max(v, 0), total());
 
   function tick(ts){
     if (last == null) last = ts;
     const dt = Math.min(.05, (ts - last) / 1000);
     last = ts;
 
-    if (wait > 0){
-      wait -= dt;
-      if (wait <= 0) offset = 0;
-    } else {
-      offset += SPEED * dt;
-      if (offset >= total()){ offset = total(); wait = HOLD; }
+    if (!dragging){                              // quán tính sau khi buông tay
+      if (Math.abs(vel) > 4){
+        offset = clamp(offset + vel * dt);
+        vel *= Math.pow(0.002, dt);
+      } else vel = 0;
     }
-    offset = Math.min(Math.max(offset + manual, 0), total());
-    manual *= 0.86;
     invite.style.transform = `translateY(${-offset}px)`;
+    if (hintEl) hintEl.style.opacity = offset > 60 ? "0" : "";   // ẩn hint sau lần vuốt đầu
     requestAnimationFrame(tick);
   }
+  const hintEl = document.querySelector(".hint");
+  if (hintEl) hintEl.style.transition = "opacity .6s ease";
 
-  // drag / wheel to nudge
   const phone = document.getElementById("phone");
-  let dragging = false, lastY = 0;
-  phone.addEventListener("pointerdown", e => { dragging = true; lastY = e.clientY; });
-  window.addEventListener("pointermove", e => {
+  phone.addEventListener("pointerdown", e => {
+    if (!opened) return;
+    dragging = true; vel = 0; lastY = e.clientY;
+    try{ phone.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  phone.addEventListener("pointermove", e => {
     if (!dragging) return;
-    manual += (lastY - e.clientY) * 1.4;
+    const dy = lastY - e.clientY;
+    offset = clamp(offset + dy);
+    vel = dy * 60;
     lastY = e.clientY;
   });
-  window.addEventListener("pointerup", () => dragging = false);
-  screenEl.addEventListener("wheel", e => { manual -= e.deltaY; e.preventDefault(); }, {passive:false});
+  const endDrag = () => { dragging = false; };
+  phone.addEventListener("pointerup", endDrag);
+  phone.addEventListener("pointercancel", endDrag);
+  window.addEventListener("pointerup", endDrag);
+  screenEl.addEventListener("wheel", e => {
+    if (!opened) return;
+    offset = clamp(offset - e.deltaY);
+    vel = -e.deltaY * 8;
+    e.preventDefault();
+  }, {passive:false});
 
   requestAnimationFrame(tick);
 
