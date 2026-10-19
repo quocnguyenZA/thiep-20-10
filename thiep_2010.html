@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thiệp chúc 20/10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Dancing+Script:wght@600&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden}
+
+  body{
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    background:
+      radial-gradient(60% 40% at 20% 15%,rgba(160,220,120,.35),transparent 60%),
+      radial-gradient(50% 45% at 85% 80%,rgba(90,160,70,.4),transparent 65%),
+      radial-gradient(45% 35% at 70% 20%,rgba(200,240,150,.25),transparent 60%),
+      linear-gradient(160deg,#4c8b3f 0%,#3c7534 40%,#2e5c2a 100%);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  /* grass-ish texture */
+  body::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(102deg,rgba(255,255,255,.05) 0 2px,transparent 2px 9px),
+      repeating-linear-gradient(78deg,rgba(0,0,0,.06) 0 3px,transparent 3px 14px);
+    filter:blur(1px);
+    opacity:.45;
+  }
+  body::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.45) 100%);
+    pointer-events:none;
+  }
+
+  /* ---------- caption bubble (like the reel overlay) ---------- */
+  .bubble{
+    position:fixed;top:max(3.4vh,22px);left:50%;transform:translateX(-50%);
+    z-index:30;
+    background:#fff;color:#111;
+    font:700 clamp(14px,1.9vw,17px)/1.45 system-ui,sans-serif;
+    text-align:center;
+    padding:12px 20px;border-radius:16px;
+    max-width:min(88vw,430px);
+    box-shadow:0 8px 26px rgba(0,0,0,.35);
+    animation:pop .7s cubic-bezier(.2,1.4,.4,1) both .3s;
+  }
+  @keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(-14px) scale(.9)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+
+  /* ---------- phone ---------- */
+  .phone{
+    position:relative;z-index:10;
+    width:min(86vw,340px);
+    aspect-ratio:9/19.3;
+    background:#0d0d10;
+    border-radius:13% / 6.2%;
+    padding:4.2%;
+    box-shadow:
+      0 40px 90px rgba(0,0,0,.55),
+      0 4px 14px rgba(0,0,0,.5),
+      inset 0 0 0 2px #2b2b30,
+      inset 0 0 0 5px #0a0a0c;
+    animation:floaty 7s ease-in-out infinite alternate;
+    cursor:grab;
+  }
+  .phone:active{cursor:grabbing}
+  @keyframes floaty{
+    from{transform:translateY(-6px) rotate(-.5deg)}
+    to{transform:translateY(8px) rotate(.7deg)}
+  }
+  .phone::after{ /* side button */
+    content:"";position:absolute;right:-3px;top:24%;width:3px;height:9%;
+    background:#26262b;border-radius:2px;
+  }
+
+  .screen{
+    position:relative;width:100%;height:100%;
+    border-radius:10.5% / 5.2%;
+    overflow:hidden;
+    background:#f7edeb;
+  }
+  .island{
+    position:absolute;top:2.4%;left:50%;transform:translateX(-50%);
+    width:32%;height:3.4%;background:#000;border-radius:99px;z-index:20;
+  }
+  .statusbar{
+    position:absolute;top:0;left:0;right:0;height:7.5%;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:0 9%;
+    font:600 clamp(9px,2.6vw,12px)/1 "Be Vietnam Pro",system-ui,sans-serif;
+    color:#5c4a46;z-index:19;pointer-events:none;
+  }
+  .statusbar .icons{display:flex;gap:4px;align-items:center}
+  .bar{width:3px;background:#5c4a46;border-radius:1px}
+  .batt{width:17px;height:9px;border:1.4px solid #5c4a46;border-radius:3px;position:relative}
+  .batt::before{content:"";position:absolute;inset:1.4px;width:70%;background:#5c4a46;border-radius:1px}
+  .batt::after{content:"";position:absolute;right:-4px;top:2.4px;width:2px;height:4px;background:#5c4a46;border-radius:0 2px 2px 0}
+
+  /* ---------- invitation (auto scroll) ---------- */
+  .invite{
+    position:absolute;left:0;right:0;top:0;
+    will-change:transform;
+    background:linear-gradient(180deg,#f8efec 0%,#f3e4e6 30%,#f6ecec 60%,#f3e6e2 100%);
+  }
+  .sec{position:relative;padding:9% 9%;text-align:center;overflow:hidden}
+  .sec + .sec{border-top:1px solid rgba(180,130,130,.14)}
+
+  .kicker{
+    font:600 clamp(8px,2.4vw,10px)/1.5 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.42em;text-transform:uppercase;color:#a97e74;
+    margin-bottom:4%;
+  }
+  .datebig{
+    font:700 clamp(24px,7vw,30px)/1.15 "Playfair Display",serif;
+    color:#7d4a42;letter-spacing:.1em;white-space:nowrap;
+  }
+  .script{
+    font:600 clamp(19px,5.6vw,25px)/1.35 "Dancing Script",cursive;
+    color:#b3655c;margin-top:3%;
+  }
+  .to{
+    font:italic 500 clamp(12px,3.6vw,15px)/1.6 "Playfair Display",serif;
+    color:#8a6a62;margin-top:2.5%;
+  }
+
+  .wish{
+    font:500 clamp(15px,4.6vw,19px)/1.9 "Playfair Display",serif;
+    color:#6f4b45;
+  }
+  .wish.g{color:#a75f55}
+  .wish b{font-weight:700;color:#8a4f45}
+
+  .pearls{display:flex;justify-content:center;align-items:center;gap:6px;margin:7% 0 2%}
+  .pearls i{border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff,#e8cfc9 60%,#d3a9a1);box-shadow:0 1px 2px rgba(140,90,80,.35)}
+  .pearls i:nth-child(odd){width:7px;height:7px}
+  .pearls i:nth-child(even){width:5px;height:5px}
+  .pearls .dia{width:8px;height:8px;background:#c98d82;border-radius:1px;transform:rotate(45deg);box-shadow:none}
+
+  /* corner florals */
+  .fl{position:absolute;width:34%;pointer-events:none;opacity:.95}
+  .fl.tl{top:-4%;left:-6%}
+  .fl.tr{top:-4%;right:-6%;transform:scaleX(-1)}
+  .fl.bl{bottom:-4%;left:-6%;transform:scaleY(-1)}
+  .fl.br{bottom:-4%;right:-6%;transform:scale(-1,-1)}
+
+  .big-heart{display:block;margin:4% auto 0;width:56%}
+
+  /* countdown */
+  .cd-label{font:italic 500 clamp(15px,4.6vw,19px)/1 "Playfair Display",serif;color:#a97e74;letter-spacing:.14em;margin-bottom:6%}
+  .cd{display:flex;justify-content:center;gap:5%}
+  .cd .c{
+    width:27%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 30% 25%,#fdf6f3,#efdbd7 70%,#e3c6bf);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.8),0 3px 8px rgba(150,100,90,.22);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .cd .n{font:700 clamp(17px,5.4vw,23px)/1 "Playfair Display",serif;color:#8a4f45}
+  .cd .u{font:600 clamp(7px,2.1vw,9px)/1 "Be Vietnam Pro",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#a97e74;margin-top:5px}
+
+  /* timeline */
+  .tl-title{font:500 clamp(17px,5.2vw,22px)/1 "Playfair Display",serif;color:#7d4a42;letter-spacing:.1em;margin-bottom:7%}
+  .tl{position:relative;display:flex;flex-direction:column;gap:9%;padding-left:2%}
+  .tl::before{
+    content:"";position:absolute;left:9px;top:6px;bottom:6px;
+    border-left:2px dotted #cf9b90;
+  }
+  .tl .ev{display:flex;gap:6%;text-align:left;align-items:flex-start;position:relative}
+  .tl .dot{
+    width:20px;height:20px;flex:none;border-radius:50%;
+    background:#f6ecea;border:2px solid #cf9b90;
+    display:grid;place-items:center;font-size:10px;
+    z-index:1;
+  }
+  .tl .t{font:700 clamp(11px,3.4vw,13px)/1.4 "Be Vietnam Pro",sans-serif;color:#8a4f45;letter-spacing:.06em}
+  .tl .d{font:400 clamp(10px,3vw,12px)/1.55 "Be Vietnam Pro",sans-serif;color:#947a72}
+
+  .bless{padding-top:12%;padding-bottom:12%}
+  .sign{
+    font:600 clamp(15px,4.6vw,19px)/1 "Dancing Script",cursive;
+    color:#b3655c;margin-top:8%;
+  }
+  .fine{font:400 clamp(9px,2.7vw,11px)/1.7 "Be Vietnam Pro",sans-serif;color:#b39a92;letter-spacing:.18em;text-transform:uppercase;margin-top:4%}
+
+  /* scroll hint */
+  .hint{
+    position:absolute;bottom:2.6%;left:50%;transform:translateX(-50%);
+    z-index:21;font:600 9px/1 "Be Vietnam Pro",sans-serif;letter-spacing:.2em;
+    color:rgba(120,85,78,.65);text-transform:uppercase;
+    animation:hint 1.6s ease-in-out infinite;
+  }
+  @keyframes hint{0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}50%{transform:translateX(-50%) translateY(4px);opacity:1}}
+
+  /* music toggle */
+  .music{
+    position:fixed;right:max(3vh,14px);bottom:max(3vh,14px);z-index:30;
+    width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+    background:rgba(255,255,255,.88);color:#7d4a42;font-size:19px;
+    box-shadow:0 6px 18px rgba(0,0,0,.3);
+    display:grid;place-items:center;
+    transition:transform .15s;
+  }
+  .music:active{transform:scale(.9)}
+  .music.on{animation:beat 1.4s ease-in-out infinite}
+  @keyframes beat{0%,100%{box-shadow:0 6px 18px rgba(0,0,0,.3)}50%{box-shadow:0 6px 18px rgba(0,0,0,.3),0 0 0 10px rgba(255,255,255,.18)}}
+</style>
+</head>
+<body>
+
+<div class="bubble">Thư chúc 20/10 nên được gửi như thế này 😍</div>
+
+<!-- corner floral template rendered inline in sections below -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="bouquet">
+      <path d="M4 118 C30 96 44 70 52 44" stroke="#8fae7a" stroke-width="3" fill="none"/>
+      <path d="M10 120 C44 112 74 96 92 70" stroke="#8fae7a" stroke-width="3" fill="none"/>
+      <ellipse cx="30" cy="94" rx="11" ry="5" fill="#a7c48f" transform="rotate(-38 30 94)"/>
+      <ellipse cx="44" cy="74" rx="10" ry="4.6" fill="#93b47c" transform="rotate(-55 44 74)"/>
+      <ellipse cx="66" cy="90" rx="11" ry="5" fill="#a7c48f" transform="rotate(28 66 90)"/>
+      <ellipse cx="82" cy="76" rx="9" ry="4.2" fill="#93b47c" transform="rotate(48 82 76)"/>
+      <circle cx="54" cy="42" r="13" fill="#e3a19a"/><circle cx="54" cy="42" r="8" fill="#d5877e"/><circle cx="54" cy="42" r="4" fill="#c26a61"/>
+      <circle cx="80" cy="60" r="10" fill="#ecb7ae"/><circle cx="80" cy="60" r="6" fill="#dd958b"/><circle cx="80" cy="60" r="3" fill="#cc776c"/>
+      <circle cx="34" cy="66" r="8" fill="#e8b3b8"/><circle cx="34" cy="66" r="4.6" fill="#d7949b"/>
+      <circle cx="96" cy="88" r="7" fill="#cfa9c8"/><circle cx="96" cy="88" r="3.6" fill="#b98ab2"/>
+      <circle cx="22" cy="104" r="6" fill="#cfa9c8"/><circle cx="22" cy="104" r="3" fill="#b98ab2"/>
+      <circle cx="66" cy="30" r="5" fill="#f2d3ce"/><circle cx="42" cy="52" r="4" fill="#f2d3ce"/>
+    </g>
+    <g id="heartwreath">
+      <path d="M90 150 C30 108 24 58 58 40 C76 30 88 40 90 52 C92 40 104 30 122 40 C156 58 150 108 90 150 Z"
+            fill="none" stroke="#b98a80" stroke-width="3"/>
+      <circle cx="58" cy="42" r="7" fill="#e3a19a"/><circle cx="58" cy="42" r="3.6" fill="#c26a61"/>
+      <circle cx="122" cy="42" r="7" fill="#e3a19a"/><circle cx="122" cy="42" r="3.6" fill="#c26a61"/>
+      <circle cx="34" cy="86" r="6" fill="#cfa9c8"/><circle cx="146" cy="86" r="6" fill="#cfa9c8"/>
+      <circle cx="52" cy="122" r="5.4" fill="#ecb7ae"/>
+      <circle cx="128" cy="122" r="5.4" fill="#ecb7ae"/>
+      <circle cx="90" cy="150" r="7" fill="#e8b3b8"/><circle cx="90" cy="150" r="3.4" fill="#d7949b"/>
+      <ellipse cx="46" cy="60" rx="9" ry="4" fill="#a7c48f" transform="rotate(-50 46 60)"/>
+      <ellipse cx="134" cy="60" rx="9" ry="4" fill="#a7c48f" transform="rotate(50 134 60)"/>
+      <ellipse cx="30" cy="110" rx="9" ry="4" fill="#93b47c" transform="rotate(-20 30 110)"/>
+      <ellipse cx="150" cy="110" rx="9" ry="4" fill="#93b47c" transform="rotate(20 150 110)"/>
+      <ellipse cx="70" cy="34" rx="7" ry="3.2" fill="#a7c48f" transform="rotate(-25 70 34)"/>
+      <ellipse cx="110" cy="34" rx="7" ry="3.2" fill="#a7c48f" transform="rotate(25 110 34)"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="phone" id="phone">
+  <div class="screen" id="screen">
+    <div class="island"></div>
+    <div class="statusbar">
+      <span>20:10</span>
+      <span class="icons">
+        <span class="bar" style="height:5px"></span>
+        <span class="bar" style="height:7px"></span>
+        <span class="bar" style="height:9px"></span>
+        <span style="font-size:.85em">▾</span>
+        <span class="batt"></span>
+      </span>
+    </div>
+
+    <div class="invite" id="invite">
+
+      <!-- COVER -->
+      <section class="sec" style="padding-top:22%">
+        <svg class="fl tl" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <svg class="fl tr" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <div class="kicker">Ngày của em</div>
+        <div class="datebig">20 THÁNG 10</div>
+        <div class="script" style="white-space:nowrap">Một lá thư nhỏ gửi em</div>
+        <svg class="big-heart" viewBox="0 0 180 165"><use href="#heartwreath"/></svg>
+        <div class="to">— gửi người thương của em</div>
+        <div class="pearls" style="margin-top:9%">
+          <i></i><i></i><i></i><span class="dia"></span><i></i><i></i><i></i>
+        </div>
+      </section>
+
+      <!-- CORE WISH -->
+      <section class="sec">
+        <div class="wish g">Chúc em <b>bình yên trong tim</b>,</div>
+        <div class="wish g">Chúc em <b>tự do trong tâm hồn</b>,</div>
+        <div class="wish g">Chúc em <b>hạnh phúc trong từng ngày</b>.</div>
+        <div class="pearls"><i></i><span class="dia"></span><i></i></div>
+        <div class="wish">Chúc em đôi mắt sáng ngời,<br>nụ cười duyên dáng, cuộc đời an nhiên.</div>
+      </section>
+
+      <!-- DECOR + LOVE -->
+      <section class="sec" style="padding-top:12%;padding-bottom:12%">
+        <svg class="fl bl" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <svg class="fl br" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <div class="script" style="margin-top:6%">Với tất cả yêu thương…</div>
+        <div class="pearls" style="margin-top:9%"><i></i><i></i><span class="dia"></span><i></i><i></i></div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section class="sec">
+        <div class="cd-label">Countdown</div>
+        <div class="cd">
+          <div class="c"><span class="n" id="cdD">—</span><span class="u">Ngày</span></div>
+          <div class="c"><span class="n" id="cdH">—</span><span class="u">Giờ</span></div>
+          <div class="c"><span class="n" id="cdM">—</span><span class="u">Phút</span></div>
+        </div>
+        <div class="fine" style="margin-top:7%">đếm ngược đến ngày của em</div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="sec">
+        <div class="tl-title">Timeline</div>
+        <div class="tl">
+          <div class="ev">
+            <span class="dot">☀</span>
+            <div><div class="t">08:00</div><div class="d">Một nụ hôn chúc ngày mới dịu dàng</div></div>
+          </div>
+          <div class="ev">
+            <span class="dot">🌸</span>
+            <div><div class="t">12:00</div><div class="d">Bó hoa nhỏ và một lời khen thật thật lòng</div></div>
+          </div>
+          <div class="ev">
+            <span class="dot">🌙</span>
+            <div><div class="t">20:00</div><div class="d">Lời chúc từ tận đáy lòng — yêu em nhiều</div></div>
+          </div>
+        </div>
+        <div class="pearls" style="margin-top:10%"><i></i><span class="dia"></span><i></i></div>
+      </section>
+
+      <!-- MORE WISHES -->
+      <section class="sec">
+        <div class="kicker">Thêm vài điều nữa</div>
+        <div class="wish">Chúc em bàn tay khéo léo,<br>tâm hồn trong sáng, mọi ngày êm đềm.</div>
+        <div class="pearls"><i></i><i></i><span class="dia"></span><i></i><i></i></div>
+        <div class="wish">Chúc em giấc ngủ sâu lắng,<br>nỗi buồn nhẹ tênh, niềm vui đầy vơi.</div>
+        <div class="pearls"><i></i><i></i><span class="dia"></span><i></i><i></i></div>
+        <div class="wish g">Chúc em nguồn cảm hứng bất tận,<br>mọi mong ước đều thành hiện thực.</div>
+      </section>
+
+      <!-- CLOSING -->
+      <section class="sec" style="padding-top:13%;padding-bottom:16%">
+        <svg class="fl tl" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <svg class="fl tr" viewBox="0 0 124 124"><use href="#bouquet"/></svg>
+        <div class="script">Hãy cứ là em —<br>phiên bản rực rỡ nhất</div>
+        <div class="pearls" style="margin-top:10%"><i></i><span class="dia"></span><i></i></div>
+        <div class="sign">— Người thương của em ♥</div>
+        <div class="fine">20 · 10 · with love</div>
+      </section>
+
+    </div>
+
+    <div class="hint">cuộn để xem ♡</div>
+  </div>
+</div>
+
+<button class="music" id="musicBtn" title="Nhạc nền">♪</button>
+
+<audio id="song" src="nhac_2010.mp3" loop preload="auto"></audio>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- countdown to 20/10 ---------- */
+  function target(){
+    const now = new Date();
+    let y = now.getFullYear();
+    let t = new Date(y, 9, 20, 0, 0, 0);   // Oct 20
+    if (t <= now) t = new Date(y + 1, 9, 20, 0, 0, 0);
+    return t;
+  }
+  function updateCD(){
+    const ms = target() - new Date();
+    const d = Math.floor(ms / 864e5);
+    const h = Math.floor(ms / 36e5) % 24;
+    const m = Math.floor(ms / 6e4) % 60;
+    cdD.textContent = d;
+    cdH.textContent = String(h).padStart(2, "0");
+    cdM.textContent = String(m).padStart(2, "0");
+  }
+  updateCD();
+  setInterval(updateCD, 30000);
+
+  /* ---------- auto vertical scroll ---------- */
+  const screenEl = document.getElementById("screen");
+  const invite = document.getElementById("invite");
+  const SPEED = 26;                 // px per second
+  const HOLD = 2.4;                 // pause at loop end
+  let offset = 0, wait = 0, last = null, manual = 0;
+
+  function total(){ return Math.max(0, invite.offsetHeight - screenEl.offsetHeight); }
+
+  function tick(ts){
+    if (last == null) last = ts;
+    const dt = Math.min(.05, (ts - last) / 1000);
+    last = ts;
+
+    if (wait > 0){
+      wait -= dt;
+      if (wait <= 0) offset = 0;
+    } else {
+      offset += SPEED * dt;
+      if (offset >= total()){ offset = total(); wait = HOLD; }
+    }
+    offset = Math.min(Math.max(offset + manual, 0), total());
+    manual *= 0.86;
+    invite.style.transform = `translateY(${-offset}px)`;
+    requestAnimationFrame(tick);
+  }
+
+  // drag / wheel to nudge
+  const phone = document.getElementById("phone");
+  let dragging = false, lastY = 0;
+  phone.addEventListener("pointerdown", e => { dragging = true; lastY = e.clientY; });
+  window.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    manual += (lastY - e.clientY) * 1.4;
+    lastY = e.clientY;
+  });
+  window.addEventListener("pointerup", () => dragging = false);
+  screenEl.addEventListener("wheel", e => { manual -= e.deltaY; e.preventDefault(); }, {passive:false});
+
+  requestAnimationFrame(tick);
+
+  /* ---------- background song (nhac_2010.mp3, lặp lại khi hết) ---------- */
+  const song = document.getElementById("song");
+  const mBtn = document.getElementById("musicBtn");
+
+  function setUI(playing){
+    mBtn.classList.toggle("on", playing);
+    mBtn.textContent = playing ? "♫" : "♪";
+  }
+  function playSong(){
+    song.play().then(() => setUI(true)).catch(() => setUI(false));
+  }
+  song.addEventListener("play",  () => setUI(true));
+  song.addEventListener("pause", () => setUI(false));
+  song.addEventListener("ended", () => { song.currentTime = 0; playSong(); }); // backup nếu loop bị bỏ
+
+  // trình duyệt chỉ cho phát sau tương tác đầu tiên
+  let started = false;
+  const startOnce = e => {
+    if (e.target.closest && e.target.closest(".music")) return; // nút ♪ tự xử lý
+    started = true;
+    playSong();
+    window.removeEventListener("pointerdown", startOnce);
+  };
+  window.addEventListener("pointerdown", startOnce);
+
+  mBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    started = true;
+    window.removeEventListener("pointerdown", startOnce);
+    song.paused ? playSong() : song.pause();
+  });
+
+  // tạm dừng khi chuyển tab, phát lại khi quay lại
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) song.pause();
+    else if (started) playSong();
+  });
+})();
+</script>
+</body>
+</html>
