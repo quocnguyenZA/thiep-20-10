@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Thiệp cưới Q & Q 21.02.2027 — giữ tay để cánh hoa hé nở, mở thiệp.">
 <title>Lễ Thành Hôn · Q &amp; Q · 21.02.2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,6 +170,49 @@
   @keyframes openPulse{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(4px);opacity:1}}
   .l-open span{font-size:17px;line-height:1}
   .landing.open .l-open{animation:none}
+
+  /* bụi sáng bay quanh tim (theo intro-dust của LoveGift) */
+  .l-dust{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .l-dust i{
+    position:absolute;width:3px;height:3px;border-radius:50%;
+    background:#ffe2b0;box-shadow:0 0 6px rgba(255,210,150,.9);opacity:0;
+    animation:ldust var(--d,9s) ease-in-out var(--delay,0s) infinite;
+  }
+  .landing.open .l-dust{opacity:0;transition:opacity .8s}
+  @keyframes ldust{
+    0%,100%{opacity:0;transform:translate(0,0) scale(.6)}
+    40%{opacity:var(--o,.6)}
+    50%{transform:translate(var(--dx,10px),-14px) scale(1)}
+    80%{opacity:calc(var(--o,.6)*.7)}
+  }
+
+  /* ring "giữ tay" (theo hold-ring của LoveGift) */
+  .hold-ring{
+    position:fixed;left:0;top:0;z-index:45;width:0;height:0;
+    pointer-events:none;opacity:0;transition:opacity .25s;
+  }
+  .hold-ring.is-active{opacity:1}
+  .hold-ring svg{
+    position:absolute;left:-60px;top:-60px;width:120px;height:120px;
+    transform:rotate(-90deg);overflow:visible;
+  }
+  .hold-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
+  .hold-ring-track{stroke:rgba(255,194,212,.18)}
+  .hold-ring-fill{
+    stroke:#ff8fb1;stroke-dasharray:100;stroke-dashoffset:100;
+    filter:drop-shadow(0 0 6px rgba(255,92,138,.9));
+    transition:stroke-dashoffset .05s linear;
+  }
+  .hold-ring.is-formed .hold-ring-fill{
+    stroke:#fff0f5;animation:hrbeat .9s ease-in-out infinite;
+  }
+  @keyframes hrbeat{0%,100%{filter:drop-shadow(0 0 6px rgba(255,92,138,.9))}50%{filter:drop-shadow(0 0 14px rgba(255,220,235,1))}}
+  .hold-ring-label{
+    position:absolute;left:0;top:74px;transform:translateX(-50%);
+    white-space:nowrap;color:#fff0f5;font-size:clamp(15px,4.2vw,20px);
+    font-family:"Dancing Script",cursive;
+    text-shadow:0 0 12px rgba(255,92,138,.9),0 2px 6px rgba(0,0,0,.6);
+  }
 
   .heart-wrap{
     position:relative;z-index:2;
@@ -697,6 +741,7 @@
 
     <!-- ===== LANDING: tim QR — chạm để mở ===== -->
     <div class="landing" id="landing">
+      <div class="l-dust" id="lDust"></div>
       <span class="pt" style="--x:12%;--t:11s;--d:-2s;--s:10px"></span>
       <span class="pt" style="--x:30%;--t:14s;--d:-7s;--s:12px"></span>
       <span class="pt" style="--x:52%;--t:12s;--d:-4s;--s:9px"></span>
@@ -713,10 +758,18 @@
       </div>
       <div class="l-names l-fade">Q &amp; Q</div>
       <div class="l-date l-fade">21 · 02 · 2027</div>
-      <div class="l-open l-fade"><span>♡</span> Chạm để mở thiệp</div>
+      <div class="l-open l-fade"><span>♡</span> Giữ tay để mở thiệp</div>
     </div>
 
   </div>
+</div>
+
+<div class="hold-ring" id="holdRing">
+  <svg viewBox="0 0 120 120">
+    <circle class="hold-ring-track" cx="60" cy="60" r="52"></circle>
+    <circle class="hold-ring-fill" id="holdFill" cx="60" cy="60" r="52"></circle>
+  </svg>
+  <span class="hold-ring-label" id="holdLabel">♡</span>
 </div>
 
 <audio id="song" src="phep-mau.mp3" loop preload="auto"></audio>
@@ -888,18 +941,103 @@
     apply();
   });
 
-  /* ---------- landing: chạm để mở tim ---------- */
+  /* ---------- landing: GIỮ TAY để mở tim (theo LoveGift) ---------- */
+  /* Trang tham chiếu không mở bằng 1 tap — nó bắt giữ tay cho tới khi đủ
+     khoảng cách (giữ ≈0.9s), có ring tiến độ chạy quanh ngón tay, rồi mới
+     "nở" và unlock nội dung. Tap thường chỉ bật nhạc. */
   let opening = false;
-  landing.addEventListener("click", () => {
+  const HOLD_MS = 900;                 // thời gian giữ đủ để mở
+  const ring = document.getElementById("holdRing");
+  const ringFill = document.getElementById("holdFill");
+  const ringLabel = document.getElementById("holdLabel");
+  const holdStart = { x: 0, y: 0 };
+  let holdT0 = 0, holdRaf = 0, holdOk = false;
+
+  function buildDust(){
+    const layer = document.getElementById("lDust");
+    if (!layer) return;
+    let html = "";
+    for (let i = 0; i < 26; i++){
+      const x = 50 + (Math.random() - .5) * 70;
+      const y = 15 + Math.random() * 70;
+      html += `<i style="left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;` +
+        `--d:${(7 + Math.random()*6).toFixed(1)}s;--delay:${(-Math.random()*10).toFixed(1)}s;` +
+        `--dx:${Math.round((Math.random()-.5)*40)}px;--o:${(.35+Math.random()*.5).toFixed(2)};` +
+        `transform:scale(${(.5+Math.random()*.8).toFixed(2)})"></i>`;
+    }
+    layer.innerHTML = html;
+  }
+  buildDust();
+
+  function ringAt(x, y){
+    ring.style.transform = `translate(${x}px,${y}px)`;
+  }
+  function ringProgress(p){
+    // circumference của r=52 ≈ 326.7; dasharray dùng 100 nên offset = 100*(1-p)
+    ringFill.style.strokeDashoffset = String(100 * (1 - Math.min(1, p)));
+  }
+  function holdTick(now){
+    if (!holdOk) return;
+    const p = (now - holdT0) / HOLD_MS;
+    ringProgress(p);
+    if (p >= 1){
+      holdOk = false;
+      ring.classList.add("is-formed");
+      ringLabel.textContent = "♡";
+      openLanding();
+      // ring "is-formed" (vòng trắng) chỉ là chớp báo đã đủ — xoá ngay để
+      // không còn đè lên tim đang tách giữa màn hình.
+      setTimeout(() => ring.classList.remove("is-active","is-formed"), 220);
+      return;
+    }
+    holdRaf = requestAnimationFrame(holdTick);
+  }
+
+  function openLanding(){
     if (opening) return;
     opening = true;
     landing.classList.add("open");
-    setTimeout(() => {
-      ready = true;
-      syncUI();
-    }, 1150);
+    setTimeout(() => { ready = true; syncUI(); }, 1150);
     setTimeout(() => landing.classList.add("gone"), 1600);
-  });
+  }
+
+  function holdStartAt(e){
+    if (opening) return;
+    holdStart.x = e.clientX; holdStart.y = e.clientY;
+    holdT0 = performance.now();
+    holdOk = true;
+    ringAt(e.clientX, e.clientY);
+    ringProgress(0);
+    ringLabel.textContent = "0";
+    ring.classList.add("is-active");
+    cancelAnimationFrame(holdRaf);
+    holdRaf = requestAnimationFrame(holdTick);
+  }
+  function holdMoveAt(e){
+    if (!holdOk || opening) return;
+    ringAt(e.clientX, e.clientY);
+    // nhả tay nếu trượt ra quá xa — y hệt LoveGift, giữ tay phải "nằm im"
+    const dx = e.clientX - holdStart.x, dy = e.clientY - holdStart.y;
+    if (Math.hypot(dx, dy) > 28) holdCancel();
+  }
+  function holdCancel(){
+    if (!holdOk) return;
+    holdOk = false;
+    cancelAnimationFrame(holdRaf);
+    ring.classList.remove("is-active","is-formed");
+  }
+  function holdEnd(){
+    if (!holdOk || opening) return;
+    // nhả trước khi đủ: ring co lại rồi mất, không mở
+    holdCancel();
+  }
+
+  // pointer = chuột + cảm ứng,统一 một đường
+  landing.addEventListener("pointerdown", holdStartAt);
+  landing.addEventListener("pointermove", holdMoveAt);
+  landing.addEventListener("pointerup", holdEnd);
+  landing.addEventListener("pointercancel", holdCancel);
+  landing.addEventListener("pointerleave", holdCancel);
 
   /* ---------- nhạc nền ---------- */
   const song = document.getElementById("song");
