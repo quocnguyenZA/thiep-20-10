@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="Thiệp cưới Q & Q 21.02.2027 — giữ tay để cánh hoa hé nở, mở thiệp.">
+<meta name="description" content="Thiệp cưới Q & Q 21.02.2027 — chạm để mở cửa, mở thiệp.">
 <title>Lễ Thành Hôn · Q &amp; Q · 21.02.2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,129 +123,12 @@
     100%{transform:translate3d(16px,calc(var(--sh,800px)*1.14),0) rotate(320deg);opacity:0}
   }
 
-  /* ================= 0 · LANDING: tim QR — chạm để mở ================= */
-  .landing{
-    position:absolute;inset:0;z-index:25;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2%;
-    background:
-      radial-gradient(70% 48% at 50% 34%,rgba(140,40,52,.5),transparent 72%),
-      radial-gradient(90% 60% at 50% 100%,rgba(80,20,30,.6),transparent 70%),
-      linear-gradient(180deg,#2a1218 0%,#1c0b10 55%,#16080c 100%);
-    cursor:pointer;
-    transition:opacity 1.05s ease .28s;
-  }
-  .landing.open{opacity:0;pointer-events:none}
-  .landing.gone{display:none}
-  .landing .pt{z-index:1}
-  .l-fade{transition:opacity .55s ease,transform .55s ease}
-  .landing.open .l-fade{opacity:0;transform:translateY(12px)}
-
-  .l-kicker{
-    position:relative;z-index:2;
-    font:600 clamp(10px,3vw,12px)/1.6 "Be Vietnam Pro",sans-serif;
-    letter-spacing:.42em;text-transform:uppercase;text-indent:.42em;
-    color:#e8cfc4;
-  }
-  .l-names{
-    position:relative;z-index:2;
-    font:600 clamp(19px,5.4vw,24px)/1.4 "Dancing Script",cursive;
-    color:#e0a8ab;
-  }
-  .l-date{
-    position:relative;z-index:2;
-    font:600 clamp(10px,3vw,12px)/1.5 "Be Vietnam Pro",sans-serif;
-    letter-spacing:.3em;color:#c9a86f;
-  }
-  .l-open{
-    position:relative;z-index:2;margin-top:2.4%;
-    display:flex;align-items:center;gap:9px;
-    padding:11px 22px;border-radius:99px;cursor:pointer;
-    font:600 clamp(11px,3.2vw,12px)/1 "Be Vietnam Pro",sans-serif;
-    letter-spacing:.16em;text-transform:uppercase;color:#f0ddd4;
-    background:rgba(255,255,255,.1);
-    border:1px solid rgba(240,200,190,.45);
-    box-shadow:0 6px 18px rgba(0,0,0,.35);
-    animation:openPulse 1.6s ease-in-out infinite;
-  }
-  @keyframes openPulse{0%,100%{transform:translateY(0);opacity:.75}50%{transform:translateY(4px);opacity:1}}
-  .l-open span{font-size:17px;line-height:1}
-  .landing.open .l-open{animation:none}
-
-  /* bụi sáng bay quanh tim (theo intro-dust của LoveGift) */
-  .l-dust{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-  .l-dust i{
-    position:absolute;width:3px;height:3px;border-radius:50%;
-    background:#ffe2b0;box-shadow:0 0 6px rgba(255,210,150,.9);opacity:0;
-    animation:ldust var(--d,9s) ease-in-out var(--delay,0s) infinite;
-  }
-  .landing.open .l-dust{opacity:0;transition:opacity .8s}
-  @keyframes ldust{
-    0%,100%{opacity:0;transform:translate(0,0) scale(.6)}
-    40%{opacity:var(--o,.6)}
-    50%{transform:translate(var(--dx,10px),-14px) scale(1)}
-    80%{opacity:calc(var(--o,.6)*.7)}
-  }
-
-  /* ring "giữ tay" (theo hold-ring của LoveGift) */
-  .hold-ring{
-    position:fixed;left:0;top:0;z-index:45;width:0;height:0;
-    pointer-events:none;opacity:0;transition:opacity .25s;
-  }
-  .hold-ring.is-active{opacity:1}
-  .hold-ring svg{
-    position:absolute;left:-60px;top:-60px;width:120px;height:120px;
-    transform:rotate(-90deg);overflow:visible;
-  }
-  .hold-ring circle{fill:none;stroke-width:4;stroke-linecap:round}
-  .hold-ring-track{stroke:rgba(255,194,212,.18)}
-  .hold-ring-fill{
-    stroke:#ff8fb1;stroke-dasharray:100;stroke-dashoffset:100;
-    filter:drop-shadow(0 0 6px rgba(255,92,138,.9));
-    transition:stroke-dashoffset .05s linear;
-  }
-  .hold-ring.is-formed .hold-ring-fill{
-    stroke:#fff0f5;animation:hrbeat .9s ease-in-out infinite;
-  }
-  @keyframes hrbeat{0%,100%{filter:drop-shadow(0 0 6px rgba(255,92,138,.9))}50%{filter:drop-shadow(0 0 14px rgba(255,220,235,1))}}
-  .hold-ring-label{
-    position:absolute;left:0;top:74px;transform:translateX(-50%);
-    white-space:nowrap;color:#fff0f5;font-size:clamp(15px,4.2vw,20px);
-    font-family:"Dancing Script",cursive;
-    text-shadow:0 0 12px rgba(255,92,138,.9),0 2px 6px rgba(0,0,0,.6);
-  }
-
-  .heart-wrap{
-    position:relative;z-index:2;
-    width:min(58%,242px);aspect-ratio:1;
-    animation:beat 2.8s ease-in-out infinite;
-  }
-  .landing.open .heart-wrap{animation:none}
-  @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
-  .heart-half{
-    position:absolute;inset:0;
-    transition:transform 1.12s cubic-bezier(.6,0,.25,1),opacity .95s ease .12s;
-    will-change:transform;
-  }
-  .heart-half.hl{clip-path:inset(0 50% 0 0)}
-  .heart-half.hr{clip-path:inset(0 0 0 50%)}
-  .landing.open .hl{transform:translateX(-135%) rotate(-15deg);opacity:0}
-  .landing.open .hr{transform:translateX(135%) rotate(15deg);opacity:0}
-  .hgrid{
-    position:absolute;inset:0;display:grid;gap:1.5px;
-    grid-template-columns:repeat(27,1fr);
-    grid-template-rows:repeat(27,1fr);
-    filter:drop-shadow(0 10px 22px rgba(180,40,55,.4));
-  }
-  .hgrid i{border-radius:1.5px}
-  .qm{background:#c8373d}
-  .qw{background:#f6e8e0}
-  .qf{background:#b92b32}
-  .qe{background:transparent}
-
-  /* ================= 1 · BÌA (sau khi mở tim) ================= */
+  /* ================= 1 · BÌA: 2 cánh cửa (tap để mở) — đồng bộ màu slide 1 ================= */
   .cover{
     background:linear-gradient(180deg,#eee1d8,#e7d1c7 48%,#e0c6bb);
+    gap:7%;
   }
+  .cover .pt{z-index:3}
   .reveal{
     position:absolute;inset:0;z-index:1;overflow:hidden;
     background:
@@ -253,6 +136,23 @@
       radial-gradient(70% 50% at 50% 100%,rgba(178,133,120,.35),transparent 70%),
       linear-gradient(180deg,#eee1d8 0%,#e7d1c7 48%,#e0c6bb 100%);
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5%;
+  }
+  .valance{
+    position:absolute;top:0;left:0;right:0;height:104px;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(42% 96% at 14% 0,#f6ebe1 98%,transparent),
+      radial-gradient(42% 96% at 50% 0,#f9efe6 98%,transparent),
+      radial-gradient(42% 96% at 86% 0,#f6ebe1 98%,transparent);
+  }
+  .valance::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:16px;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 8px,rgba(206,168,152,.28) 8px 16px);
+    opacity:.5;
+  }
+  .pearl-string{
+    position:absolute;top:66px;left:5%;right:5%;height:8px;z-index:1;pointer-events:none;
+    background:radial-gradient(circle 3.4px at 5px 4px,#fdfaf3 96%,transparent) 0 0/12px 8px repeat-x;
+    filter:drop-shadow(0 1px 1px rgba(120,90,80,.35));
   }
   .cover-kicker{
     position:absolute;top:96px;left:0;right:0;z-index:2;
@@ -274,6 +174,80 @@
     font:italic 500 clamp(13px,4vw,16px)/1 "Playfair Display",serif;
     color:#e8e2cf;letter-spacing:.14em;text-shadow:0 2px 8px rgba(0,0,0,.4);
   }
+
+  /* cánh cửa — màu rosewood/blush đồng bộ bảng màu slide 1 (không xanh olive) */
+  .door{
+    position:absolute;top:0;bottom:0;width:50.5%;z-index:2;cursor:pointer;
+    background:
+      repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 30px),
+      linear-gradient(180deg,#c9a09a,#b58580 60%,#a07068);
+    transition:transform 1.15s cubic-bezier(.65,0,.25,1);
+    will-change:transform;
+  }
+  .doorL{left:0}
+  .doorR{right:0}
+  .cover.open .doorL{transform:translateX(-106%)}
+  .cover.open .doorR{transform:translateX(106%)}
+  .seam{
+    position:absolute;top:0;bottom:0;width:5px;pointer-events:none;
+    background:linear-gradient(180deg,rgba(80,45,40,.55),rgba(80,45,40,.25) 30%,rgba(80,45,40,.25) 70%,rgba(80,45,40,.55));
+    box-shadow:0 0 0 1px rgba(255,255,255,.05);
+  }
+  .doorL .seam{right:0}
+  .doorR .seam{left:0}
+  .seam::after{
+    content:"";position:absolute;top:12%;bottom:12%;left:2px;width:1px;
+    background:repeating-linear-gradient(180deg,rgba(240,220,200,.5) 0 3px,transparent 3px 9px);
+  }
+  .hinge{
+    position:absolute;left:9%;width:20px;height:52px;border-radius:6px;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,#c9a86f,#a08050);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 7px rgba(0,0,0,.4);
+  }
+  .hinge.t{top:22%}
+  .hinge.b{bottom:22%}
+  .knob{
+    position:absolute;right:8%;top:52%;width:22px;height:22px;border-radius:50%;z-index:1;pointer-events:none;
+    background:radial-gradient(circle at 32% 28%,#e2cb96,#b08d52 68%,#7c5f2a);
+    box-shadow:0 4px 8px rgba(0,0,0,.45),inset 0 1px 1px rgba(255,255,255,.5);
+  }
+  .knob::after{content:"";position:absolute;right:-10px;top:8px;width:10px;height:6px;background:linear-gradient(90deg,#c9a86f,#8a6a40);border-radius:0 4px 4px 0;opacity:.9}
+  .cover-center{
+    position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);
+    width:min(84%,262px);z-index:4;pointer-events:none;
+    transition:transform 1.15s cubic-bezier(.65,0,.25,1),opacity .45s ease .8s;
+  }
+  .cover.open .cover-center{transform:translate(-50%,-50%) translateX(112%);opacity:0}
+  .plaque-wrap{position:relative;width:100%}
+  .plaque-wrap::before{
+    content:"";position:absolute;inset:-22% -16%;z-index:-1;
+    background:radial-gradient(50% 50% at 50% 50%,rgba(255,235,195,.4),transparent 70%);
+  }
+  .plaque{display:block;width:100%;filter:drop-shadow(0 14px 22px rgba(120,80,70,.4))}
+  .plaque-text{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5%;
+    padding:16% 12%;
+  }
+  .mono-kicker{font:600 clamp(8px,2.4vw,10px)/1 "Be Vietnam Pro",sans-serif;letter-spacing:.4em;color:#a9854f;text-transform:uppercase;text-indent:.4em}
+  .mono{
+    font:700 clamp(34px,10.5vw,46px)/1 "Playfair Display",serif;
+    color:#b08d52;letter-spacing:.02em;white-space:nowrap;
+    text-shadow:0 1px 0 rgba(255,255,255,.5),0 2px 6px rgba(120,90,40,.35);
+  }
+  .mono-date{font:600 clamp(10px,3vw,12px)/1.5 "Be Vietnam Pro",sans-serif;letter-spacing:.24em;color:#a9854f}
+
+  .open-hint{
+    position:absolute;bottom:5%;left:50%;transform:translateX(-50%);z-index:5;
+    display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;
+    opacity:1;transition:opacity .4s;
+  }
+  .open-hint span{font-size:18px;line-height:1;color:#b5726f;animation:hintPulse 1.7s ease-in-out infinite}
+  .open-hint p{
+    font:600 clamp(10px,3vw,12px)/1 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.16em;text-transform:uppercase;color:#825859;white-space:nowrap;
+  }
+  .cover.open .open-hint{opacity:0;animation:none}
 
   /* ================= 2 · LỜI MỜI (nền rượu vang) ================= */
   .invite-sec{
@@ -497,6 +471,38 @@
       <circle cx="1" cy="46" r="2.4" fill="#a08bb8"/>
     </g>
 
+    <g id="cartouche">
+      <path id="cartPath" d="
+        M150 14
+        C 172 14 184 32 206 44
+        C 236 60 268 74 276 108
+        C 284 142 268 160 268 190
+        C 268 220 284 238 276 272
+        C 268 306 236 320 206 336
+        C 184 348 172 366 150 366
+        C 128 366 116 348 94 336
+        C 64 320 32 306 24 272
+        C 16 238 32 220 32 190
+        C 32 160 16 142 24 108
+        C 32 74 64 60 94 44
+        C 116 32 128 14 150 14 Z"
+        fill="#efddd2" stroke="#b99a5e" stroke-width="3.4"/>
+      <use href="#cartPath" transform="translate(150 190) scale(.9) translate(-150 -190)"
+           fill="none" stroke="#d8bd86" stroke-width="1.6"/>
+      <use href="#rose" transform="translate(150 24) scale(.9)"/>
+      <use href="#rose" transform="translate(150 356) scale(.9)"/>
+      <use href="#leaf" transform="translate(126 30) rotate(-30) scale(.7)"/>
+      <use href="#leaf" transform="translate(174 30) rotate(30) scale(.7)"/>
+      <use href="#leaf" transform="translate(126 350) rotate(30) scale(.7)"/>
+      <use href="#leaf" transform="translate(174 350) rotate(-30) scale(.7)"/>
+      <path d="M96 86 C 78 96 76 116 92 122 C 104 126 110 114 102 108" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M204 86 C 222 96 224 116 208 122 C 196 126 190 114 198 108" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M96 294 C 78 284 76 264 92 258 C 104 254 110 266 102 272" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M204 294 C 222 284 224 264 208 258 C 196 254 190 266 198 272" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="150" cy="366" r="3" fill="#faf3e6" stroke="#c9a86f" stroke-width="1"/>
+      <circle cx="150" cy="14" r="3" fill="#faf3e6" stroke="#c9a86f" stroke-width="1"/>
+    </g>
+
     <g id="archSide">
       <path d="M40 720 C 20 560 52 420 40 300 C 32 210 60 120 88 40" stroke="#8fa07b" stroke-width="3" fill="none"/>
       <use href="#wisteria" transform="translate(88 40) scale(1.1)"/>
@@ -579,13 +585,15 @@
 
     <div class="invite" id="invite">
 
-      <!-- 1 · BÌA -->
+      <!-- 1 · BÌA: 2 cánh cửa — chạm để mở -->
       <section class="sec cover" id="cover">
         <span class="pt" style="--x:14%;--t:14s;--d:-3s;--s:9px"></span>
         <span class="pt" style="--x:70%;--t:17s;--d:-9s;--s:11px"></span>
         <span class="pt" style="--x:44%;--t:15s;--d:-6s;--s:8px"></span>
 
         <div class="reveal">
+          <div class="valance"></div>
+          <div class="pearl-string"></div>
           <div class="cover-kicker">Lễ Thành Hôn · 21.02.2027</div>
           <div class="c">
             <div class="reveal-mono">Q &amp; Q</div>
@@ -593,6 +601,32 @@
             <div class="reveal-date">21 · 02 · 2027</div>
             <div class="cover-tag" style="margin-top:9%">Save the Date</div>
           </div>
+        </div>
+
+        <div class="door doorL">
+          <i class="seam"></i>
+          <div class="hinge t"></div>
+          <div class="hinge b"></div>
+        </div>
+        <div class="door doorR">
+          <i class="seam"></i>
+          <div class="knob"></div>
+        </div>
+
+        <div class="cover-center">
+          <div class="plaque-wrap">
+            <svg class="plaque" viewBox="0 0 300 380"><use href="#cartouche"/></svg>
+            <div class="plaque-text">
+              <div class="mono-kicker">Lễ Thành Hôn</div>
+              <div class="mono">Q &amp; Q</div>
+              <div class="mono-date">21 · 02 · 2027</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="open-hint">
+          <span>♡</span>
+          <p>Chạm để mở cửa</p>
         </div>
       </section>
 
@@ -739,37 +773,7 @@
     <div class="hint" id="hint">vuốt lên để xem thiệp ♡</div>
     <button class="mbtn" id="musicBtn" title="Nhạc nền">♪</button>
 
-    <!-- ===== LANDING: tim QR — chạm để mở ===== -->
-    <div class="landing" id="landing">
-      <div class="l-dust" id="lDust"></div>
-      <span class="pt" style="--x:12%;--t:11s;--d:-2s;--s:10px"></span>
-      <span class="pt" style="--x:30%;--t:14s;--d:-7s;--s:12px"></span>
-      <span class="pt" style="--x:52%;--t:12s;--d:-4s;--s:9px"></span>
-      <span class="pt" style="--x:74%;--t:15s;--d:-9s;--s:11px"></span>
-      <span class="pt" style="--x:88%;--t:13s;--d:-6s;--s:8px"></span>
-      <span class="pt" style="--x:40%;--t:16s;--d:-12s;--s:10px"></span>
-      <span class="pt" style="--x:64%;--t:18s;--d:-3s;--s:9px"></span>
-      <span class="pt" style="--x:20%;--t:17s;--d:-14s;--s:11px"></span>
-
-      <div class="l-kicker l-fade">Lễ Thành Hôn</div>
-      <div class="heart-wrap" id="heartWrap">
-        <div class="heart-half hl"><div class="hgrid" id="gridL"></div></div>
-        <div class="heart-half hr"><div class="hgrid" id="gridR"></div></div>
-      </div>
-      <div class="l-names l-fade">Q &amp; Q</div>
-      <div class="l-date l-fade">21 · 02 · 2027</div>
-      <div class="l-open l-fade"><span>♡</span> Giữ tay để mở thiệp</div>
-    </div>
-
   </div>
-</div>
-
-<div class="hold-ring" id="holdRing">
-  <svg viewBox="0 0 120 120">
-    <circle class="hold-ring-track" cx="60" cy="60" r="52"></circle>
-    <circle class="hold-ring-fill" id="holdFill" cx="60" cy="60" r="52"></circle>
-  </svg>
-  <span class="hold-ring-label" id="holdLabel">♡</span>
 </div>
 
 <audio id="song" src="phep-mau.mp3" loop preload="auto"></audio>
@@ -783,51 +787,9 @@
   const hint = document.getElementById("hint");
   const phone = document.getElementById("phone");
   const dotsEl = document.getElementById("dots");
-  const landing = document.getElementById("landing");
+  const cover = document.getElementById("cover");
   const sections = Array.from(invite.querySelectorAll(".sec"));
   const maxIdx = sections.length - 1;
-
-  /* ---------- tim QR (grid trái tim kiểu QR) ---------- */
-  function buildHeart(el){
-    const N = 27;
-    el.style.gridTemplateColumns = `repeat(${N},1fr)`;
-    el.style.gridTemplateRows = `repeat(${N},1fr)`;
-    let s = 7;
-    const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
-    const eyes = [[4,4],[N-11,4],[4,N-11]];
-    const eyeAt = (x,y) => {
-      for (const [ex,ey] of eyes){
-        if (x>=ex && x<ex+7 && y>=ey && y<ey+7){
-          const i=x-ex, j=y-ey;
-          return (i>=2&&i<=4&&j>=2&&j<=4) ? "p" : "w";
-        }
-      }
-      return null;
-    };
-    const frag = document.createDocumentFragment();
-    for (let y=0; y<N; y++){
-      for (let x=0; x<N; x++){
-        const nx = ((x-(N-1)/2)/((N-1)/2)) * 1.12;
-        const ny = (((N-1)/2-y)/((N-1)/2)) * 1.12;
-        const f = Math.pow(nx*nx+ny*ny-1,3) - nx*nx*ny*ny*ny;
-        const e = eyeAt(x,y);
-        const c = document.createElement("i");
-        if (e==="p") c.className = "qf";
-        else if (e==="w") c.className = "qw";
-        else if (f<=0){
-          c.className = "qm";
-          const r = rnd();
-          c.style.opacity = r>0.88 ? "0.55" : r>0.7 ? "0.78" : "1";
-        }
-        else c.className = "qe";
-        frag.appendChild(c);
-      }
-    }
-    el.appendChild(frag);
-  }
-  const gridL = document.getElementById("gridL");
-  buildHeart(gridL);
-  document.getElementById("gridR").innerHTML = gridL.innerHTML;
 
   /* ---------- chiều cao slide ---------- */
   const setSH = () => document.documentElement.style.setProperty("--sh", screenEl.clientHeight + "px");
@@ -941,103 +903,17 @@
     apply();
   });
 
-  /* ---------- landing: GIỮ TAY để mở tim (theo LoveGift) ---------- */
-  /* Trang tham chiếu không mở bằng 1 tap — nó bắt giữ tay cho tới khi đủ
-     khoảng cách (giữ ≈0.9s), có ring tiến độ chạy quanh ngón tay, rồi mới
-     "nở" và unlock nội dung. Tap thường chỉ bật nhạc. */
+  /* ---------- bìa: chạm để mở cửa ---------- */
   let opening = false;
-  const HOLD_MS = 900;                 // thời gian giữ đủ để mở
-  const ring = document.getElementById("holdRing");
-  const ringFill = document.getElementById("holdFill");
-  const ringLabel = document.getElementById("holdLabel");
-  const holdStart = { x: 0, y: 0 };
-  let holdT0 = 0, holdRaf = 0, holdOk = false;
-
-  function buildDust(){
-    const layer = document.getElementById("lDust");
-    if (!layer) return;
-    let html = "";
-    for (let i = 0; i < 26; i++){
-      const x = 50 + (Math.random() - .5) * 70;
-      const y = 15 + Math.random() * 70;
-      html += `<i style="left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;` +
-        `--d:${(7 + Math.random()*6).toFixed(1)}s;--delay:${(-Math.random()*10).toFixed(1)}s;` +
-        `--dx:${Math.round((Math.random()-.5)*40)}px;--o:${(.35+Math.random()*.5).toFixed(2)};` +
-        `transform:scale(${(.5+Math.random()*.8).toFixed(2)})"></i>`;
-    }
-    layer.innerHTML = html;
-  }
-  buildDust();
-
-  function ringAt(x, y){
-    ring.style.transform = `translate(${x}px,${y}px)`;
-  }
-  function ringProgress(p){
-    // circumference của r=52 ≈ 326.7; dasharray dùng 100 nên offset = 100*(1-p)
-    ringFill.style.strokeDashoffset = String(100 * (1 - Math.min(1, p)));
-  }
-  function holdTick(now){
-    if (!holdOk) return;
-    const p = (now - holdT0) / HOLD_MS;
-    ringProgress(p);
-    if (p >= 1){
-      holdOk = false;
-      ring.classList.add("is-formed");
-      ringLabel.textContent = "♡";
-      openLanding();
-      // ring "is-formed" (vòng trắng) chỉ là chớp báo đã đủ — xoá ngay để
-      // không còn đè lên tim đang tách giữa màn hình.
-      setTimeout(() => ring.classList.remove("is-active","is-formed"), 220);
-      return;
-    }
-    holdRaf = requestAnimationFrame(holdTick);
-  }
-
-  function openLanding(){
+  cover.addEventListener("click", () => {
     if (opening) return;
     opening = true;
-    landing.classList.add("open");
-    setTimeout(() => { ready = true; syncUI(); }, 1150);
-    setTimeout(() => landing.classList.add("gone"), 1600);
-  }
-
-  function holdStartAt(e){
-    if (opening) return;
-    holdStart.x = e.clientX; holdStart.y = e.clientY;
-    holdT0 = performance.now();
-    holdOk = true;
-    ringAt(e.clientX, e.clientY);
-    ringProgress(0);
-    ringLabel.textContent = "0";
-    ring.classList.add("is-active");
-    cancelAnimationFrame(holdRaf);
-    holdRaf = requestAnimationFrame(holdTick);
-  }
-  function holdMoveAt(e){
-    if (!holdOk || opening) return;
-    ringAt(e.clientX, e.clientY);
-    // nhả tay nếu trượt ra quá xa — y hệt LoveGift, giữ tay phải "nằm im"
-    const dx = e.clientX - holdStart.x, dy = e.clientY - holdStart.y;
-    if (Math.hypot(dx, dy) > 28) holdCancel();
-  }
-  function holdCancel(){
-    if (!holdOk) return;
-    holdOk = false;
-    cancelAnimationFrame(holdRaf);
-    ring.classList.remove("is-active","is-formed");
-  }
-  function holdEnd(){
-    if (!holdOk || opening) return;
-    // nhả trước khi đủ: ring co lại rồi mất, không mở
-    holdCancel();
-  }
-
-  // pointer = chuột + cảm ứng,统一 một đường
-  landing.addEventListener("pointerdown", holdStartAt);
-  landing.addEventListener("pointermove", holdMoveAt);
-  landing.addEventListener("pointerup", holdEnd);
-  landing.addEventListener("pointercancel", holdCancel);
-  landing.addEventListener("pointerleave", holdCancel);
+    cover.classList.add("open");
+    setTimeout(() => {
+      ready = true;                 // cửa mở xong → bắt đầu nhận vuốt
+      syncUI();
+    }, 1150);
+  });
 
   /* ---------- nhạc nền ---------- */
   const song = document.getElementById("song");
