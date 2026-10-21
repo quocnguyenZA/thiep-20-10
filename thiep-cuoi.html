@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lễ Thành Hôn · 21.02.2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@600&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+
+  body{
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    /* nền olive giống cửa thiệp trong video */
+    background:
+      radial-gradient(60% 45% at 30% 20%,rgba(160,165,120,.35),transparent 65%),
+      radial-gradient(55% 40% at 80% 85%,rgba(90,95,70,.5),transparent 65%),
+      linear-gradient(165deg,#7a7d63 0%,#6f7059 45%,#5d5f4a 100%);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  body::before{ /* vân gỗ cửa */
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.07) 0 2px,transparent 2px 26px);
+    filter:blur(1px);opacity:.6;
+  }
+  body::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 50% 50%,transparent 50%,rgba(0,0,0,.5) 100%);
+    pointer-events:none;
+  }
+
+  /* ---------- phone ---------- */
+  .phone{
+    position:relative;z-index:10;
+    width:min(86vw,340px);
+    aspect-ratio:9/19.3;
+    background:#0d0d10;
+    border-radius:13% / 6.2%;
+    padding:14px;
+    box-shadow:0 40px 90px rgba(0,0,0,.55),0 4px 14px rgba(0,0,0,.5),
+      inset 0 0 0 2px #2b2b30,inset 0 0 0 5px #0a0a0c;
+    animation:floaty 7s ease-in-out infinite alternate;
+    touch-action:none;
+  }
+  @keyframes floaty{from{transform:translateY(-6px) rotate(-.5deg)}to{transform:translateY(8px) rotate(.7deg)}}
+  .phone::after{content:"";position:absolute;right:-3px;top:24%;width:3px;height:9%;background:#26262b;border-radius:2px}
+
+  .screen{
+    position:relative;width:100%;height:100%;
+    border-radius:10.5% / 5.2%;
+    overflow:hidden;background:#f2ebe8;
+  }
+  .island{position:absolute;top:2.4%;left:50%;transform:translateX(-50%);width:32%;height:3.4%;background:#000;border-radius:99px;z-index:20}
+  .statusbar{
+    position:absolute;top:0;left:0;right:0;height:7.5%;
+    display:flex;justify-content:space-between;align-items:center;padding:0 9%;
+    font:600 clamp(9px,2.6vw,12px)/1 "Be Vietnam Pro",sans-serif;color:#5c4a46;z-index:19;pointer-events:none;
+  }
+  .statusbar .icons{display:flex;gap:4px;align-items:center}
+  .bar{width:3px;background:#5c4a46;border-radius:1px}
+  .batt{width:17px;height:9px;border:1.4px solid #5c4a46;border-radius:3px;position:relative}
+  .batt::before{content:"";position:absolute;inset:1.4px;width:70%;background:#5c4a46;border-radius:1px}
+  .batt::after{content:"";position:absolute;right:-4px;top:2.4px;width:2px;height:4px;background:#5c4a46;border-radius:0 2px 2px 0}
+
+  /* ---------- cuộn thủ công ---------- */
+  .invite{position:absolute;left:0;right:0;top:0;will-change:transform}
+  .sec{position:relative;padding:11% 9%;text-align:center;overflow:hidden}
+  .sec + .sec{border-top:1px solid rgba(140,120,100,.12)}
+
+  .hint{
+    position:absolute;bottom:2.6%;left:50%;transform:translateX(-50%);
+    z-index:21;font:600 9px/1 "Be Vietnam Pro",sans-serif;letter-spacing:.2em;
+    color:rgba(90,80,64,.7);text-transform:uppercase;white-space:nowrap;
+    transition:opacity .6s ease;pointer-events:none;
+  }
+  @keyframes hint{0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}50%{transform:translateX(-50%) translateY(4px);opacity:1}}
+
+  /* ================= 1 · BÌA: cửa olive + thiếp monogram ================= */
+  .cover{
+    min-height:var(--sh,100dvh);
+    background:
+      repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 30px),
+      linear-gradient(180deg,#7a7d63,#6b6d55 60%,#5f614b);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:7%;padding:16% 10%;
+  }
+  .cover::before{ /* đường ghép giữa cửa + khóa */
+    content:"";position:absolute;top:0;bottom:0;left:50%;width:5px;transform:translateX(-50%);
+    background:linear-gradient(180deg,rgba(40,42,30,.55),rgba(40,42,30,.25) 30%,rgba(40,42,30,.25) 70%,rgba(40,42,30,.55));
+    box-shadow:0 0 0 1px rgba(255,255,255,.05);
+  }
+  .cover::after{ /* đinh khóa */
+    content:"";position:absolute;top:12%;bottom:12%;left:50%;width:1px;transform:translateX(-50%);
+    background:repeating-linear-gradient(180deg,rgba(220,210,170,.5) 0 3px,transparent 3px 9px);
+  }
+  .plaque-wrap{position:relative;z-index:2;width:84%;max-width:262px}
+  .plaque{display:block;width:100%;filter:drop-shadow(0 14px 22px rgba(30,32,20,.45))}
+  .plaque-text{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;    gap:2.5%;
+    padding:16% 12%;
+  }
+  .mono-kicker{font:600 clamp(8px,2.4vw,10px)/1 "Be Vietnam Pro",sans-serif;letter-spacing:.4em;color:#a9854f;text-transform:uppercase;text-indent:.4em}
+  .mono{
+    font:700 clamp(34px,10.5vw,46px)/1 "Playfair Display",serif;
+    color:#b08d52;letter-spacing:.02em;white-space:nowrap;
+    text-shadow:0 1px 0 rgba(255,255,255,.5),0 2px 6px rgba(120,90,40,.35);
+  }
+  .mono-date{font:600 clamp(10px,3vw,12px)/1.5 "Be Vietnam Pro",sans-serif;letter-spacing:.24em;color:#a9854f}
+  .cover-tag{
+    position:relative;z-index:2;
+    font:italic 500 clamp(13px,4vw,16px)/1 "Playfair Display",serif;
+    color:#e8e2cf;letter-spacing:.14em;
+    text-shadow:0 2px 8px rgba(0,0,0,.4);
+  }
+
+  /* ================= 2 · LỜI MỜI (rèm blush) ================= */
+  .invite-sec{
+    background:
+      radial-gradient(80% 35% at 50% 0%,rgba(255,244,236,.8),transparent 70%),
+      linear-gradient(180deg,#ecdfd6 0%,#e6d0c6 45%,#e2c9be 100%);
+    padding-top:128px;padding-bottom:14%;
+  }
+  .invite-sec > *{position:relative;z-index:2}
+  .valance{ /* rèm thắt */
+    position:absolute;top:0;left:0;right:0;height:96px;
+    background:
+      radial-gradient(42% 90% at 14% 0,#f4e8de 98%,transparent),
+      radial-gradient(42% 90% at 50% 0,#f7ece3 98%,transparent),
+      radial-gradient(42% 90% at 86% 0,#f4e8de 98%,transparent);
+    pointer-events:none;z-index:1;
+  }
+  .pearl-string{
+    position:absolute;top:64px;left:6%;right:6%;height:8px;
+    background:radial-gradient(circle 3.4px at 5px 4px,#fdfaf3 96%,transparent) 0 0/12px 8px repeat-x;
+    filter:drop-shadow(0 1px 1px rgba(120,90,80,.35));
+    pointer-events:none;z-index:1;
+  }
+  .kicker{
+    font:600 clamp(9px,2.7vw,11px)/1.7 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.42em;text-transform:uppercase;color:#a67f6c;text-indent:.42em;
+  }
+  .title-serif{
+    font:600 clamp(23px,6.8vw,30px)/1.3 "Playfair Display",serif;color:#7d5348;
+    margin:3% 0;
+  }
+  .script{
+    font:600 clamp(20px,6vw,26px)/1.4 "Dancing Script",cursive;color:#b5726f;margin:4% 0;
+  }
+  .body-it{
+    font:italic 500 clamp(13px,3.9vw,16px)/1.85 "Playfair Display",serif;color:#7a6a5e;
+  }
+
+  /* ================= 3 · COUNTDOWN ================= */
+  .count-sec{background:linear-gradient(180deg,#f2ebe8,#f0e8e4)}
+  .cd-title{font:600 clamp(24px,7vw,31px)/1 "Playfair Display",serif;color:#6f6555;letter-spacing:.05em;margin-bottom:8%}
+  .cd{display:flex;justify-content:center;gap:4.5%}
+  .cd .c{
+    width:27.5%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,#fbf4ea,#f0e2cf 62%,#e2c9a4 88%,#d3b283);
+    box-shadow:
+      inset 0 0 0 2px rgba(255,255,255,.7),
+      inset 0 0 0 7px rgba(190,150,100,.18),
+      0 4px 10px rgba(140,110,80,.28);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .cd .c::before{ /* chuỗi trai quanh viền */
+    content:"";position:absolute;inset:5.5%;border-radius:50%;
+    background:radial-gradient(circle 2px at 50% 0,#fffdf6 96%,transparent) 0 0/8px 8px;
+    -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));
+    mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));
+    opacity:.9;
+  }
+  .cd .c::after{ /* nụ hồng nhỏ trên đĩa */
+    content:"";position:absolute;top:7%;left:50%;transform:translateX(-50%);
+    width:9px;height:9px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#d99b96,#b5726f 70%);
+    box-shadow:12px 2px 0 -2px #8fa07b,-12px 2px 0 -2px #8fa07b;
+  }
+  .cd .n{font:700 clamp(17px,5.4vw,23px)/1 "Playfair Display",serif;color:#8a6f45;margin-top:6%}
+  .cd .u{font:600 clamp(7px,2.1vw,9px)/1 "Be Vietnam Pro",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a68b62;margin-top:7%}
+  .cd-cap{font:italic 500 clamp(12px,3.6vw,14px)/1 "Playfair Display",serif;color:#a67f6c;margin-top:7%;letter-spacing:.08em}
+
+  /* ================= 4 · CHUYỆN CỦA CHÚNG MÌNH (vòm hoa) ================= */
+  .story-sec{background:linear-gradient(180deg,#f1e9e5,#f2ebe8);padding-top:26%;padding-bottom:22%}
+  .arch{position:absolute;top:2%;bottom:0;width:34%;pointer-events:none}
+  .arch.l{left:-7%}
+  .arch.r{right:-7%;transform:scaleX(-1)}
+  .arch svg{height:100%}
+  .story-title{font:600 clamp(22px,6.4vw,28px)/1.2 "Playfair Display",serif;color:#7d6a52;margin-bottom:5%}
+  .gold-div{width:74px;height:10px;margin:0 auto 6%;
+    background:
+      radial-gradient(circle 4px at 50% 50%,#c2a266 96%,transparent);
+    position:relative;opacity:.85}
+  .gold-div::before,.gold-div::after{content:"";position:absolute;top:50%;width:26px;height:1px;background:#c2a266}
+  .gold-div::before{right:calc(50% + 8px)}
+  .gold-div::after{left:calc(50% + 8px)}
+
+  /* ================= 5 · CHI TIẾT NGÀY VUI ================= */
+  .det-sec{background:linear-gradient(180deg,#f2ebe8,#efe6e1)}
+  .det-bar{
+    display:flex;justify-content:center;align-items:center;gap:4%;
+    font:600 clamp(10px,3vw,12px)/1.6 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;color:#8a7148;
+    margin-bottom:7%;flex-wrap:wrap;
+  }
+  .det-bar i{width:1px;height:14px;background:#c2a266;display:inline-block}
+  .venue{font:600 clamp(17px,5.2vw,21px)/1.5 "Playfair Display",serif;color:#6f5c48}
+  .venue-sub{font:italic 500 clamp(13px,3.8vw,15px)/1.7 "Playfair Display",serif;color:#9a8b7a;margin-top:1%}
+  .det-note{margin:7% auto 8%;max-width:92%}
+  .btns{display:flex;flex-direction:column;gap:12px;align-items:center}
+  .btn-a{
+    display:flex;align-items:center;gap:10px;justify-content:center;
+    min-width:62%;padding:12px 22px;cursor:pointer;
+    font:600 clamp(11px,3.2vw,12px)/1 "Be Vietnam Pro",sans-serif;
+    letter-spacing:.22em;text-transform:uppercase;color:#8a7148;
+    background:rgba(255,252,246,.65);
+    border:1px solid #cfb282;border-radius:99px;
+    transition:all .2s ease;
+  }
+  .btn-a:hover{background:#fff;border-color:#b99a5e;box-shadow:0 4px 12px rgba(160,130,80,.2)}
+  .btn-a:active{transform:scale(.96)}
+  .btn-a svg{width:15px;height:15px;stroke:#8a7148;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .btn-a.done{background:#e9dcc3;border-color:#b99a5e}
+
+  /* ================= 6 · TRANG KẾT ================= */
+  .end-sec{
+    background:linear-gradient(180deg,#efe6e1,#e8d8d0);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding-top:15%;padding-bottom:18%;
+  }
+  .gift-frame{
+    position:relative;width:86%;max-width:290px;aspect-ratio:.78;
+    background:linear-gradient(180deg,#f6ebe4,#eeddd4);
+    border:2.5px solid #c9a86f;border-radius:18px;
+    box-shadow:inset 0 0 0 5px #f9f2ec,inset 0 0 0 6.5px #ddc194,0 10px 24px rgba(150,110,90,.22);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5%;
+    padding:14% 10%;
+  }
+  .bow{position:absolute;top:-9%;left:50%;transform:translateX(-50%);width:38%}
+  .end-mono{font:700 clamp(28px,8.5vw,36px)/1 "Playfair Display",serif;color:#b08d52;letter-spacing:.04em}
+  .end-script{font:600 clamp(19px,5.6vw,24px)/1.45 "Dancing Script",cursive;color:#b5726f}
+  .end-sub{font:italic 500 clamp(12px,3.6vw,14px)/1.7 "Playfair Display",serif;color:#9a8b7a}
+  .pearls{display:flex;justify-content:center;align-items:center;gap:6px;margin:6% 0}
+  .pearls i{border-radius:50%;background:radial-gradient(circle at 32% 30%,#fff,#ede0cc 60%,#d9c2a0);box-shadow:0 1px 2px rgba(140,110,80,.35)}
+  .pearls i:nth-child(odd){width:7px;height:7px}
+  .pearls i:nth-child(even){width:5px;height:5px}
+  .pearls .dia{width:8px;height:8px;background:#c2a266;border-radius:1px;transform:rotate(45deg);box-shadow:none}
+
+  /* garland chung (trai + hồng + lá) */
+  .garland{display:block;width:100%;pointer-events:none}
+
+  /* ---------- mobile: full màn hình ---------- */
+  @media (max-width:520px){
+    html,body{height:100%;height:100dvh}
+    body::after{display:none}
+    .phone{width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;padding:0;box-shadow:none;animation:none}
+    .phone::after{display:none}
+    .screen{border-radius:0}
+    .island,.statusbar{display:none}
+    .cover{min-height:100dvh}
+    .hint{bottom:max(3%,env(safe-area-inset-bottom))}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SVG template ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- hoa hồng -->
+    <g id="rose">
+      <circle r="9" fill="#d99b96"/><circle r="5.6" fill="#c2827e"/><circle r="2.6" fill="#a96563"/>
+    </g>
+    <g id="roseDeep">
+      <circle r="8" fill="#b5726f"/><circle r="4.8" fill="#9a5b59"/><circle r="2.2" fill="#825859"/>
+    </g>
+    <g id="roseCream">
+      <circle r="7.5" fill="#f3e4d8"/><circle r="4.4" fill="#e8d2c2"/><circle r="2" fill="#d4b39c"/>
+    </g>
+    <!-- lá sage -->
+    <g id="leaf">
+      <ellipse rx="9" ry="3.8" fill="#9aa87f"/>
+    </g>
+    <g id="leafDeep">
+      <ellipse rx="8" ry="3.4" fill="#7f8e66"/>
+    </g>
+    <!-- dây tử linh lan -->
+    <g id="wisteria">
+      <path d="M0 0 C -2 18 2 36 0 54" stroke="#8fa07b" stroke-width="2" fill="none"/>
+      <circle cx="0" cy="10" r="4.5" fill="#b3a1c9"/><circle cx="-3" cy="20" r="4" fill="#a08bb8"/>
+      <circle cx="3" cy="29" r="3.6" fill="#b3a1c9"/><circle cx="-1" cy="38" r="3" fill="#9680ad"/>
+      <circle cx="1" cy="46" r="2.4" fill="#a08bb8"/>
+    </g>
+
+    <!-- tráp monogram (ogee cartouche) -->
+    <g id="cartouche">
+      <path id="cartPath" d="
+        M150 14
+        C 172 14 184 32 206 44
+        C 236 60 268 74 276 108
+        C 284 142 268 160 268 190
+        C 268 220 284 238 276 272
+        C 268 306 236 320 206 336
+        C 184 348 172 366 150 366
+        C 128 366 116 348 94 336
+        C 64 320 32 306 24 272
+        C 16 238 32 220 32 190
+        C 32 160 16 142 24 108
+        C 32 74 64 60 94 44
+        C 116 32 128 14 150 14 Z"
+        fill="#efddd2" stroke="#b99a5e" stroke-width="3.4"/>
+      <use href="#cartPath" transform="translate(150 190) scale(.9) translate(-150 -190)"
+           fill="none" stroke="#d8bd86" stroke-width="1.6"/>
+      <!-- lòi hoa ở 4 mỏm -->
+      <use href="#rose" transform="translate(150 24) scale(.9)"/>
+      <use href="#rose" transform="translate(150 356) scale(.9)"/>
+      <use href="#leaf" transform="translate(126 30) rotate(-30) scale(.7)"/>
+      <use href="#leaf" transform="translate(174 30) rotate(30) scale(.7)"/>
+      <use href="#leaf" transform="translate(126 350) rotate(30) scale(.7)"/>
+      <use href="#leaf" transform="translate(174 350) rotate(-30) scale(.7)"/>
+      <!-- đường xoắn vàng -->
+      <path d="M96 86 C 78 96 76 116 92 122 C 104 126 110 114 102 108" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M204 86 C 222 96 224 116 208 122 C 196 126 190 114 198 108" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M96 294 C 78 284 76 264 92 258 C 104 254 110 266 102 272" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M204 294 C 222 284 224 264 208 258 C 196 254 190 266 198 272" fill="none" stroke="#c9a86f" stroke-width="2.4" stroke-linecap="round"/>
+      <!-- chấm trai -->
+      <circle cx="150" cy="366" r="3" fill="#faf3e6" stroke="#c9a86f" stroke-width="1"/>
+      <circle cx="150" cy="14" r="3" fill="#faf3e6" stroke="#c9a86f" stroke-width="1"/>
+    </g>
+
+    <!-- vòm hoa bên trái (story) -->
+    <g id="archSide">
+      <path d="M40 720 C 20 560 52 420 40 300 C 32 210 60 120 88 40" stroke="#8fa07b" stroke-width="3" fill="none"/>
+      <use href="#wisteria" transform="translate(88 40) scale(1.1)"/>
+      <use href="#wisteria" transform="translate(58 140) scale(.85) rotate(8)"/>
+      <use href="#wisteria" transform="translate(70 250) scale(.7) rotate(-6)"/>
+      <use href="#rose" transform="translate(46 190) scale(1.5)"/>
+      <use href="#roseDeep" transform="translate(66 250) scale(1.15)"/>
+      <use href="#roseCream" transform="translate(40 268) scale(1.1)"/>
+      <use href="#rose" transform="translate(52 360) scale(1.7)"/>
+      <use href="#roseDeep" transform="translate(36 430) scale(1.35)"/>
+      <use href="#rose" transform="translate(58 470) scale(1.2)"/>
+      <use href="#roseCream" transform="translate(38 520) scale(1.3)"/>
+      <use href="#roseDeep" transform="translate(54 590) scale(1.55)"/>
+      <use href="#leaf" transform="translate(70 170) rotate(-60) scale(1.2)"/>
+      <use href="#leafDeep" transform="translate(28 230) rotate(40) scale(1.1)"/>
+      <use href="#leaf" transform="translate(74 330) rotate(-40) scale(1.3)"/>
+      <use href="#leafDeep" transform="translate(26 400) rotate(30) scale(1.2)"/>
+      <use href="#leaf" transform="translate(70 500) rotate(-50) scale(1.2)"/>
+      <use href="#leafDeep" transform="translate(30 560) rotate(35) scale(1.3)"/>
+      <use href="#leaf" transform="translate(52 640) rotate(-15) scale(1.1)"/>
+      <path d="M46 640 C 44 680 52 700 48 730" stroke="#b5726f" stroke-width="1.6" fill="none"/>
+      <circle cx="48" cy="734" r="2.6" fill="#c2827e"/>
+    </g>
+
+    <!-- bó hoa ngang (garland section) -->
+    <g id="rowGarland">
+      <path d="M10 26 Q 200 46 390 26" stroke="#c9b8a4" stroke-width="7" fill="none" opacity=".85"/>
+      <path d="M10 26 Q 200 46 390 26" stroke="#f6efe4" stroke-width="3.4" fill="none"/>
+      <use href="#roseDeep" transform="translate(70 30) scale(1.25)"/>
+      <use href="#rose" transform="translate(140 38) scale(1.5)"/>
+      <use href="#roseCream" transform="translate(200 40) scale(1.2)"/>
+      <use href="#rose" transform="translate(260 38) scale(1.45)"/>
+      <use href="#roseDeep" transform="translate(330 30) scale(1.25)"/>
+      <use href="#leaf" transform="translate(105 34) rotate(-25) scale(1.2)"/>
+      <use href="#leafDeep" transform="translate(170 42) rotate(20) scale(1.1)"/>
+      <use href="#leaf" transform="translate(230 42) rotate(-18) scale(1.15)"/>
+      <use href="#leafDeep" transform="translate(295 34) rotate(25) scale(1.2)"/>
+      <use href="#leaf" transform="translate(40 26) rotate(-40) scale(.9)"/>
+      <use href="#leaf" transform="translate(360 26) rotate(40) scale(.9)"/>
+    </g>
+
+    <!-- nơ quà -->
+    <g id="bow">
+      <path d="M60 34 C 30 6 4 10 8 32 C 10 44 34 44 60 34 Z" fill="#f0e2d6" stroke="#ddc1b0" stroke-width="1.6"/>
+      <path d="M60 34 C 90 6 116 10 112 32 C 110 44 86 44 60 34 Z" fill="#f0e2d6" stroke="#ddc1b0" stroke-width="1.6"/>
+      <path d="M48 38 C 42 56 36 68 30 80 L 46 74 C 50 60 54 48 56 40 Z" fill="#e9d8ca"/>
+      <path d="M72 38 C 78 56 84 68 90 80 L 74 74 C 70 60 66 48 64 40 Z" fill="#e9d8ca"/>
+      <ellipse cx="60" cy="35" rx="9" ry="7.5" fill="#e4d0c0" stroke="#d4b8a4" stroke-width="1.4"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="phone" id="phone">
+  <div class="screen" id="screen">
+    <div class="island"></div>
+    <div class="statusbar">
+      <span>11:00</span>
+      <span class="icons">
+        <span class="bar" style="height:5px"></span>
+        <span class="bar" style="height:7px"></span>
+        <span class="bar" style="height:9px"></span>
+        <span style="font-size:.85em">▾</span>
+        <span class="batt"></span>
+      </span>
+    </div>
+
+    <div class="invite" id="invite">
+
+      <!-- 1 · BÌA -->
+      <section class="sec cover">
+        <div class="plaque-wrap">
+          <svg class="plaque" viewBox="0 0 300 380"><use href="#cartouche"/></svg>
+          <div class="plaque-text">
+            <div class="mono-kicker">Lễ Thành Hôn</div>
+            <div class="mono">Q &amp; Q</div>
+            <div class="mono-date">21 · 02 · 2027</div>
+          </div>
+        </div>
+        <div class="cover-tag">Save the Date</div>
+      </section>
+
+      <!-- 2 · LỜI MỜI -->
+      <section class="sec invite-sec">
+        <div class="valance"></div>
+        <div class="pearl-string"></div>
+        <div class="kicker">Trân trọng kính mời</div>
+        <div class="title-serif">Lễ Thành Hôn của chúng mình</div>
+        <svg viewBox="0 0 400 60" style="width:62%;display:block;margin:0 auto"><use href="#rowGarland"/></svg>
+        <p class="body-it" style="margin-top:7%">
+          Cùng gia đình hai bên trân trọng kính mời Quý quan khách
+          đến chung vui và chúc phúc trong ngày trọng đại của chúng mình.
+        </p>
+        <div class="pearls"><i></i><i></i><span class="dia"></span><i></i><i></i></div>
+        <div class="script">Chủ nhật · 21 tháng 02, 2027</div>
+      </section>
+
+      <!-- 3 · COUNTDOWN -->
+      <section class="sec count-sec">
+        <div class="cd-title">Countdown</div>
+        <div class="cd">
+          <div class="c"><span class="n" id="cdD">—</span><span class="u">Ngày</span></div>
+          <div class="c"><span class="n" id="cdH">—</span><span class="u">Giờ</span></div>
+          <div class="c"><span class="n" id="cdM">—</span><span class="u">Phút</span></div>
+        </div>
+        <div class="cd-cap">đếm từng ngày đến đại lễ</div>
+        <svg class="garland" viewBox="0 0 400 60" style="margin-top:10%"><use href="#rowGarland"/></svg>
+      </section>
+
+      <!-- 4 · CHUYỆN CỦA CHÚNG MÌNH -->
+      <section class="sec story-sec">
+        <div class="arch l"><svg viewBox="0 0 110 760" preserveAspectRatio="xMinYMax meet"><use href="#archSide"/></svg></div>
+        <div class="arch r"><svg viewBox="0 0 110 760" preserveAspectRatio="xMinYMax meet"><use href="#archSide"/></svg></div>
+        <div class="story-title">Chuyện của chúng mình</div>
+        <div class="gold-div"></div>
+        <p class="body-it">
+          Hai ta gặp nhau như hai người xa lạ,<br>
+          rồi đi cùng nhau qua những năm tháng<br>
+          dịu dàng nhất.<br><br>
+          Và nay, chúng mình muốn giữ lời hứa —<br>
+          cùng nhau đi hết quãng đời còn lại.
+        </p>
+      </section>
+
+      <!-- 5 · CHI TIẾT -->
+      <section class="sec det-sec">
+        <div class="det-bar"><span>Chủ nhật</span><i></i><span>21 · 02 · 2027</span><i></i><span>11:00</span></div>
+        <svg viewBox="0 0 400 60" style="width:56%;display:block;margin:0 auto 7%"><use href="#rowGarland"/></svg>
+        <div class="venue">Nhà hàng tiệc cưới · Grand Palace</div>
+        <div class="venue-sub">123 Đường Hoa Hồng, Quận 1, TP. Hồ Chí Minh</div>
+        <p class="body-it det-note">
+          Sự hiện diện của Quý khách là niềm vinh hạnh và món quà
+          quý giá nhất trong ngày hạnh phúc của chúng mình.
+        </p>
+        <div class="btns">
+          <div class="btn-a" id="mapsBtn">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            Mở bản đồ
+          </div>
+          <div class="btn-a" id="calBtn">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+            Thêm vào lịch
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · TRANG KẾT -->
+      <section class="sec end-sec">
+        <div class="gift-frame">
+          <svg class="bow" viewBox="0 0 120 88"><use href="#bow"/></svg>
+          <div class="end-mono">Q &amp; Q</div>
+          <div class="pearls"><i></i><span class="dia"></span><i></i></div>
+          <div class="end-script">Hẹn gặp bạn<br>trong ngày vui!</div>
+          <div class="end-sub">21 · 02 · 2027 — With love</div>
+        </div>
+        <div class="pearls" style="margin-top:10%"><i></i><i></i><span class="dia"></span><i></i><i></i></div>
+      </section>
+
+    </div>
+
+    <div class="hint" id="hint">vuốt để mở thiệp ♡</div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- chiều cao màn hình (cover đầy khung) ---------- */
+  const screenEl = document.getElementById("screen");
+  const setSH = () => document.documentElement.style.setProperty("--sh", screenEl.clientHeight + "px");
+  setSH();
+  window.addEventListener("resize", setSH);
+
+  /* ---------- countdown đến 21/02/2027 11:00 ---------- */
+  const TARGET = new Date(2027, 1, 21, 11, 0, 0);
+  function updateCD(){
+    const ms = Math.max(0, TARGET - new Date());
+    const d = Math.floor(ms / 864e5);
+    const h = Math.floor(ms / 36e5) % 24;
+    const m = Math.floor(ms / 6e4) % 60;
+    cdD.textContent = d;
+    cdH.textContent = String(h).padStart(2, "0");
+    cdM.textContent = String(m).padStart(2, "0");
+  }
+  updateCD();
+  setInterval(updateCD, 30000);
+
+  /* ---------- cuộn vuốt tay ---------- */
+  const invite = document.getElementById("invite");
+  const hint = document.getElementById("hint");
+  const phone = document.getElementById("phone");
+  let offset = 0, last = null, vel = 0, dragging = false, lastY = 0;
+
+  const total = () => Math.max(0, invite.offsetHeight - screenEl.offsetHeight);
+  const clamp = v => Math.min(Math.max(v, 0), total());
+
+  function tick(ts){
+    if (last == null) last = ts;
+    const dt = Math.min(.05, (ts - last) / 1000);
+    last = ts;
+    if (!dragging){
+      if (Math.abs(vel) > 4){ offset = clamp(offset + vel * dt); vel *= Math.pow(0.002, dt); }
+      else vel = 0;
+    }
+    invite.style.transform = `translateY(${-offset}px)`;
+    hint.style.opacity = offset > 60 ? "0" : "";
+    requestAnimationFrame(tick);
+  }
+
+  phone.addEventListener("pointerdown", e => {
+    dragging = true; vel = 0; lastY = e.clientY;
+    try{ phone.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  phone.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    const dy = lastY - e.clientY;
+    offset = clamp(offset + dy);
+    vel = dy * 60;
+    lastY = e.clientY;
+  });
+  const endDrag = () => { dragging = false; };
+  phone.addEventListener("pointerup", endDrag);
+  phone.addEventListener("pointercancel", endDrag);
+  window.addEventListener("pointerup", endDrag);
+  screenEl.addEventListener("wheel", e => {
+    offset = clamp(offset - e.deltaY);
+    vel = -e.deltaY * 8;
+    e.preventDefault();
+  }, {passive:false});
+
+  requestAnimationFrame(tick);
+
+  /* ---------- nút bản đồ & lịch ---------- */
+  document.getElementById("mapsBtn").addEventListener("click", e => {
+    const q = encodeURIComponent("Nhà hàng tiệc cưới Grand Palace, Quận 1, TP. Hồ Chí Minh");
+    window.open("https://www.google.com/maps/search/?api=1&query=" + q, "_blank");
+  });
+
+  document.getElementById("calBtn").addEventListener("click", e => {
+    const ics = [
+      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//QQ Wedding//VI",
+      "BEGIN:VEVENT",
+      "UID:qq-wedding-2027@invitation",
+      "DTSTAMP:20261019T000000Z",
+      "DTSTART;TZID=Asia/Ho_Chi_Minh:20270221T110000",
+      "DTEND;TZID=Asia/Ho_Chi_Minh:20270221T140000",
+      "SUMMARY:Lễ Thành Hôn — Q & Q",
+      "DESCRIPTION:Chủ nhật 21/02/2027 — 11:00",
+      "LOCATION:Nhà hàng tiệc cưới Grand Palace\\, Quận 1\\, TP. Hồ Chí Minh",
+      "END:VEVENT","END:VCALENDAR"
+    ].join("\r\n");
+    const blob = new Blob([ics], {type:"text/calendar;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "le-thanh-hon-QQ-21022027.ics";
+    a.click();
+    URL.revokeObjectURL(a.href);
+    e.currentTarget.classList.add("done");
+    e.currentTarget.lastChild.textContent = " Đã lưu lịch ✓";
+  });
+})();
+</script>
+</body>
+</html>
