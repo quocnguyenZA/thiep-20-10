@@ -78,6 +78,19 @@
   }
   @keyframes hint{0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}50%{transform:translateX(-50%) translateY(4px);opacity:1}}
 
+  /* music toggle */
+  .music{
+    position:fixed;right:max(3vh,14px);bottom:max(3vh,14px);z-index:30;
+    width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+    background:rgba(255,255,255,.88);color:#b5726f;font-size:19px;
+    box-shadow:0 6px 18px rgba(0,0,0,.3);
+    display:grid;place-items:center;
+    transition:transform .15s;
+  }
+  .music:active{transform:scale(.9)}
+  .music.on{animation:beat 1.4s ease-in-out infinite}
+  @keyframes beat{0%,100%{box-shadow:0 6px 18px rgba(0,0,0,.3)}50%{box-shadow:0 6px 18px rgba(0,0,0,.3),0 0 0 10px rgba(181,114,111,.18)}}
+
   /* ================= 1 · BÌA: cửa olive + thiếp monogram ================= */
   .cover{
     min-height:var(--sh,100dvh);
@@ -497,6 +510,9 @@
   </div>
 </div>
 
+<button class="music" id="musicBtn" title="Nhạc nền">♪</button>
+<audio id="song" src="nhac-cuoi.mp3" loop preload="auto"></audio>
+
 <script>
 (() => {
   "use strict";
@@ -542,6 +558,44 @@
     hint.style.opacity = offset > 60 ? "0" : "";
     requestAnimationFrame(tick);
   }
+
+  /* ---------- nhạc nền (nhac-cuoi.mp3, lặp lại khi hết) ---------- */
+  const song = document.getElementById("song");
+  const mBtn = document.getElementById("musicBtn");
+
+  function setUI(playing){
+    mBtn.classList.toggle("on", playing);
+    mBtn.textContent = playing ? "♫" : "♪";
+  }
+  function playSong(){
+    song.play().then(() => setUI(true)).catch(() => setUI(false));
+  }
+  song.addEventListener("play",  () => setUI(true));
+  song.addEventListener("pause", () => setUI(false));
+  song.addEventListener("ended", () => { song.currentTime = 0; playSong(); });
+
+  // trình duyệt chỉ cho phát sau tương tác đầu tiên
+  let started = false;
+  const startOnce = e => {
+    if (e.target.closest && e.target.closest(".music")) return; // nút ♪ tự xử lý
+    started = true;
+    playSong();
+    window.removeEventListener("pointerdown", startOnce);
+  };
+  window.addEventListener("pointerdown", startOnce);
+
+  mBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    started = true;
+    window.removeEventListener("pointerdown", startOnce);
+    song.paused ? playSong() : song.pause();
+  });
+
+  // tạm dừng khi chuyển tab, phát lại khi quay lại
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) song.pause();
+    else if (started) playSong();
+  });
 
   phone.addEventListener("pointerdown", e => {
     dragging = true; vel = 0; lastY = e.clientY;
